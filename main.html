@@ -11,8 +11,8 @@
       <p class="cut">攻撃側</p>
       <br>
       <div class="attackpokemon">
-      <label>攻撃側のポケモンの名前を入力してください。
-      <input list="atkpokemon" id="attackpokemon"  value="ルカリオ">
+      <label>攻撃側のポケモン
+      <input list="atkpokemon" id="attackpokemon"  value="ルカリオ" placeholder="ポケモン名">
       </label>
       </div>
       <datalist id="atkpokemon">
@@ -27,55 +27,76 @@
         <option value="みがわり人形">
       </datalist>
       <div class="skill">
-      <label>技名を入力してください。
-      <input list="skills" value="しんそく" id="skill">
+      <label>技名
+      <input list="skills" value="しんそく" id="skill" placeholder="技名">
       </label>
       </div>
-      <datalist id="skills">
-        <option value="通常攻撃">
-        <option value="強化攻撃">
-        <option value="でんこうせっか">
-        <option value="しんそく">
-        <option value="しんそく+">
-        <option value="しんそくの回し蹴り">
-        <option value="チャージなしグロウパンチ">
-        <option value="フルチャージグロウパンチ">
-        <option value="コメットパンチ">
-        <option value="ボーンラッシュ">
-        <option value="インファイト">
-        <option value="インファイト+">
-        <option value="ユナイト技">
-      </datalist>
-      <br>
+      <div id="datalists">
+        <datalist id="skills">
+          <option value="通常攻撃">通常攻撃</option>
+          <option value="強化攻撃">強化攻撃</option>
+          <option value="でんこうせっか">でんこうせっか</option>
+          <option value="しんそく">しんそく</option>
+          <option value="しんそく+">しんそく+</option>
+          <option value="しんそくの回し蹴り">しんそくの回し蹴り</option>
+          <option value="チャージなしグロウパンチ">チャージなしグロウパンチ</option>
+          <option value="フルチャージグロウパンチ">フルチャージグロウパンチ</option>
+          <option value="コメットパンチ">コメットパンチ</option>
+          <option value="ボーンラッシュ">ボーンラッシュ</option>
+          <option value="インファイト">インファイト</option>
+          <option value="インファイト+">インファイト+</option>
+          <option value="ユナイトわざ">ユナイトわざ</option>
+        </datalist>
+      </div>
       <div class="atklevel">
-      <label>レベルを入力してください。
-      <input type="number" min="1" max="15" value="1" id="attacklevel">
+      <label>レベル
+      <input type="number" min="1" max="15" value="1" id="attacklevel" placeholder="レベル">
       </label>
       </div>
-      <br>
         <div class="item">
-          <label>もちものを入力してください</label>
-          <input name = "item">
-          <input name = "item">
-          <input name = "item">
+          <label>もちもの</label>
+          <ul>
+            <li name="itemli"><input name = "item" placeholder="もちもの" class="items" value="ちからのハチマキ"><label>レベル</label><input type="number" min="1" max="30" class="item_level" value="20" placeholder="レベ"><br><label>CT0秒</label><input type="checkbox" checked id="powerband"></li>
+            <li name="itemli"><input name = "item" placeholder="もちもの" class="items" value="かるいし"><label>レベル</label><input type="number" min="1" max="30" class="item_level" value="20" placeholder="レベ"><br><label>備考欄</label><label id="floatstone"></label></li>
+            <li name="itemli"><input name = "item" placeholder="もちもの" class="items" value="もうこうダンベル"><label>レベル</label><input type="number" min="1" max="30" class="item_level" value="20" placeholder="レべ"><br><label>筋トレ回数</label><input type="number" min = "0" max="6" value="0" placeholder="回数" id="dumbbell"></li>
+          </ul>
+        <p id="warning" class="warning"></p>
         </div>
       <br>
-      <p id="atk" class="atk">attack:160</p>
+      <div id="checks">
+        <label class="check">
+         急所
+         <input type="checkbox" id="critical"/>
+        </label>
+        <label class="check">
+          プラスパワー
+          <input type="checkbox" id="pluspower"/>
+        </label>
+        <br>
+      </div>
+      <p id="atk" class="stats">attack:160</p>
     </div>
     <div class="defence">
       <p class="cut">防御側</p>
       <br>
       <div class="defencepokemon">
-        <label>防御側のポケモンの名前を入力してください。
-        <input list="defpokemon" id="defencepokemon" value="ルカリオ">
+        <label>防御側のポケモン
+        <input list="defpokemon" id="defencepokemon" value="ルカリオ" placeholder="ポケモン名">
         </label>
       </div>
       <br>
       <div class="deflevel">
-        <label>レベルを入力してください。
-        <input type="number" min="1" max="15" value="1" id="defencelevel">
+        <label>レベル
+        <input type="number" min="1" max="15" value="1" id="defencelevel" placeholder="レベル">
         </label>
       </div>
+      <p id="maxhp" class="stats">最大HP:3250</p>
+      <div class="nowhp">
+        <label>残りHP:</label>
+        <input type="number" min="0" max="3250" id="nowhp" placeholder="残りHP" class="num" value="3250">
+        <input type="button" value="3250" class="btn" id="nowhp_btn">
+      </div>
+      <p id="def" class="stats">ぼうぎょ:78</p>
     </div>
     <p id="result" class="result"></p>
     <p id="memo"></p>
@@ -115,7 +136,7 @@
         }
       }
       class Skill{
-        constructor(name,ratio,per=0,base=0,rate=[0,999999],decrease=[0,999999],current=[0,999999]){
+        constructor(name,ratio,per=0,base=0,rate=[0,0],decrease=[0,0],current=[0,0]){
           this.name = name;
           this.ratio = ratio;
           this.per = per;
@@ -125,7 +146,7 @@
           this.current = current;//現在hp割合
         }
       }
-      let data = [new Pokemon("ルカリオ",[3250,3392,3549,3721,3910,4118,4347,4599,4877,5184,5522,5894,6303,6753,7249],[160,170,180,192,205,219,234,251,270,291,314,339,366,396,429],[78,89,101,114,129,145,163,183,205,229,255,284,316,351,390],[20,23],[60,69],"attack",[new Skill("しんそく",198,6,270),new Skill("しんそく+",198,6,270),new Skill("フルチャージグロウパンチ",381.8,5,161,[0,999999],[10,1000]),new Skill("チャージなしグロウパンチ",209.15,3,88,10,[0,999999],[10,1000]),new Skill("通常攻撃",100),new Skill("強化攻撃",130),new Skill("でんこうせっか",221,11,240),new Skill("しんそくの回し蹴り",75),new Skill("ボーンラッシュ",41,1,50),new Skill("インファイト",50,2,60),new Skill("インファイト+",56,2,69)]),new Pokemon("みがわり人形",fill(0,15),fill(0,15),fill(0,15),fill(0,15),fill(0,15),"attack",null)];
+      let data = [new Pokemon("ルカリオ",[3250,3392,3549,3721,3910,4118,4347,4599,4877,5184,5522,5894,6303,6753,7249],[160,170,180,192,205,219,234,251,270,291,314,339,366,396,429],[78,89,101,114,129,145,163,183,205,229,255,284,316,351,390],[20,23,27,31,36,41,46,52,59,66,74,83,93,104,116],[60,69,78,88,99,112,126,141,158,176,196,218,243,270,300],"attack",[new Skill("しんそく",198,6,270),new Skill("しんそく+",198,6,270),new Skill("フルチャージグロウパンチ",381.8,5,161,[0,0],[10,1000]),new Skill("チャージなしグロウパンチ",209.15,3,88,10,[0,0],[10,1000]),new Skill("通常攻撃",100),new Skill("強化攻撃",130),new Skill("でんこうせっか",221,11,240),new Skill("しんそくの回し蹴り",75),new Skill("コメットパンチ",167,8,180),new Skill("ボーンラッシュ",41,1,50),new Skill("インファイト",50,2,60),new Skill("インファイト+",56,2,69),new Skill("ユナイトわざ",174,4,210)]),new Pokemon("みがわり人形",fill(100000,15),fill(0,15),fill(0,15),fill(0,15),fill(0,15),"attack",null),new Pokemon("ピカチュウ",[3292,3399,3517,3646,3788,3945,4117,4307,4516,4747,5001,5280,5588,5927,6300],[134,140,146,153,160,168,177,187,198,210,223,237,253,271,290],[35,40,45,51,58,65,73,82,92,103,115,128,142,158,175],[50,82,117,156,199,246,298,355,418,487,563,647,740,842,954],[27,31,35,40,45,51,57,64,72,80,89,99,110,122,135],"special",[new Skill("通常攻撃",100),new Skill("強化攻撃",38,10,200),new Skill("でんきショック",75,21,390),new Skill("エレキボール",66,25,530,[0,0],[4,999999]),new Skill("エレキボール+",77,29,640,[0,0],[5,999999]),new Skill("かみなり",20,5,210),new Skill("エレキネット",36,11,350),new Skill("ボルテッカー",14,3,140),new Skill("10まんボルト",50,12,500),new Skill("10まんボルト+",61,12,609),new Skill("ユナイト技",49,10,490)])];
       console.log(data);
       let inputattackpokemon=document.getElementById("attackpokemon");
       let inputskill = document.getElementById("skill");
@@ -137,12 +158,18 @@
       let sp_attack = attackpokemon.sp_attack[attacklevel-1];
       let kind =  attackpokemon.kind;//ポケモンが物理か特殊か
       let atk = document.getElementById("atk");//htmlの要素
+      let maxhp = document.getElementById("maxhp");
+      let inputnowhp = document.getElementById("nowhp");
+      let def = document.getElementById("def");
+      let nowhp = inputnowhp.value;
+      let btnnowhp = document.getElementById("nowhp_btn");
       let check = document.getElementById("check");//チェックボックス
       let judg = false;//技がプラスになっているかどうか
       let inputdefencepokemon = document.getElementById("defencepokemon");
       let inputdefencelevel = document.getElementById("defencelevel");
       let defencelevel = inputdefencelevel.value;
       let defencepokemon = extract(data,inputdefencepokemon.value,data.length);
+      let healthpoint = defencepokemon.hp[defencelevel-1];
       let defence = defencepokemon.defence[defencelevel-1];
       let sp_defence = defencepokemon.sp_defence[defencelevel-1];
       let damage = 0;//ダメージ
@@ -152,8 +179,77 @@
       let extremespeedbuff_check = null;
       let inputitems =document.getElementsByName("item");
       let items =[inputitems[0].value,inputitems[1].value,inputitems[2].value];
+      let inputitems_level = document.getElementsByClassName("item_level");
+      let items_level =[inputitems_level[0],inputitems_level[1],inputitems_level[2]];
+      let inputcritical = document.getElementById("critical");
+      let inputpluspower = document.getElementById("pluspower");
       function write(text){
         memo.textContent = memo.textContent+text+",";
+      }
+      function atkitem(){
+        for(let i = 0;i<=2;i++){
+          let item = items[i];
+          let itemlv = items_level[i].value;
+          switch(item){
+            case "ちからのハチマキ":
+              if(document.getElementById("powerband")===null){
+                let frag = document.createElement("label");
+                let node = document.createElement("input");
+                node.type="checkbox";
+                node.checked =true;
+                node.id="powerband";
+                frag.appendChild(document.createTextNode("CT0秒"));
+                document.getElementsByName("itemli")[i].appendChild(frag);
+                document.getElementsByName("itemli")[i].appendChild(node);
+                document.getElementById("powerband").addEventListener("change",calculation);
+              }
+              attack+=Math.floor((itemlv-0+1)/2);
+              break;
+            case "かるいし":
+              if(document.getElementById("floatstone")===null){
+                let frag = document.createElement("label");
+                let node = document.createElement("label");
+                node.id="floatstone";
+                frag.appendChild(document.createTextNode("備考欄"));
+                document.getElementsByName("itemli")[i].appendChild(frag);
+                document.getElementsByName("itemli")[i].appendChild(node);
+              }
+              attack+=1.6*Math.floor((itemlv-0+1)/2);
+              break;
+            case "もうこうダンベル":
+              if(document.getElementById("dumbbell")===null){
+                let frag = document.createElement("label");
+                let node = document.createElement("input");
+                frag.appendChild(document.createTextNode("筋トレ回数"));
+                node.type="number";
+                node.min = "0";
+                node.max = "6";
+                node.value = "0";
+                node.id = "dumbbell";
+                node.placeholder = "回数"
+                document.getElementsByName("itemli")[i].appendChild(frag);
+                document.getElementsByName("itemli")[i].appendChild(node);
+                document.getElementById("dumbbell").addEventListener("change",calculation);
+              }
+              attack+=0.6*itemlv+[6,9,12,12][Math.floor(itemlv/10)]*document.getElementById("dumbbell").value;
+              break;
+          }
+        }
+      }
+      function changeskills(){
+        attackpokemon = extract(data,inputattackpokemon.value,data.length);
+        inputskill.value="通常攻撃";
+        let datali = document.getElementById("skills");
+        while(datali.firstChild){
+          datali.removeChild(datali.firstChild);
+        }
+        let frag = "";
+        for(let i = 0;i<=attackpokemon.skills.length;i++){
+          frag = document.createElement("option");
+          frag.value = attackpokemon.skills[i].name;
+          frag.appendChild(document.createTextNode(attackpokemon.skills[i].name))
+          datali.appendChild(frag);
+        }
       }
       function createnode(){
        if(attackpokemon.name ==="ルカリオ"&&!(["しんそく","しんそく+","フルチャージグロウパンチ","チャージなしグロウパンチ","でんこうせっか","コメットパンチ"].includes(skill.name))&&document.getElementById("lucario_extremespeedbuff")===null&&attacklevel>=11){
@@ -161,10 +257,11 @@
           let label = document.createElement("label");
           extremespeedbuff.type = "checkbox";
           extremespeedbuff.id = "lucario_extremespeedbuff";
+          label.className="check";
           label.id ="lucario_extremespeedlabel";
           label.appendChild(document.createTextNode("神速+のバフを有効にする"));
           label.appendChild(extremespeedbuff);
-          document.getElementById("attack").appendChild(label);
+          document.getElementById("checks").appendChild(label);
           lucario_extremespeedbuff = true;
           extremespeedbuff_check = document.getElementById("lucario_extremespeedbuff");
           extremespeedbuff_check.addEventListener("change",calculation);
@@ -174,10 +271,16 @@
            document.getElementById("lucario_extremespeedlabel").remove();
            extremespeedbuff_check = null;
         }
-
       }
 
       function calculation(){
+        let inputs = document.getElementsByTagName("input");
+        for(let i = 1;i<inputs.length;i++){
+          let inputone = inputs[i];
+          if(inputone.type==="number" && inputone.value-0>inputone.max){
+            inputone.value=inputone.max;
+          }
+        }
         attackpokemon = extract(data,inputattackpokemon.value,data.length);
         skill = extract(attackpokemon.skills,inputskill.value,attackpokemon.skills.length);
         attacklevel = inputattacklevel.value - 0;
@@ -185,8 +288,15 @@
         sp_attack = attackpokemon.sp_attack[attacklevel-1];
         defencepokemon = extract(data,inputdefencepokemon.value,data.length);
         defencelevel = inputdefencelevel.value;
+        healthpoint = defencepokemon.hp[defencelevel-1];
         defence = defencepokemon.defence[defencelevel-1];
         sp_defence = defencepokemon.sp_defence[defencelevel-1];
+        inputnowhp.max = healthpoint;
+        btnnowhp.value = healthpoint;
+        nowhp = inputnowhp.value;
+        if(inputnowhp.value>healthpoint){
+          inputnowhp.value = healthpoint;
+        }
         items = [inputitems[0].value,inputitems[1].value,inputitems[2].value];
         if(attackpokemon.kind ==="attack"||(skill.name==="通常攻撃")){
           kind = "attack";
@@ -194,34 +304,93 @@
           kind = "special";
         }
         createnode();
+        atkitem();
+        if((items[0]===items[1]&&items[0]!=="")||(items[1]===items[2]&&items[1]!=="")||(items[2]===items[0]&&items[0]!=="")){
+          document.getElementById("warning").textContent="重複するもちものがあります";
+        }else{
+          document.getElementById("warning").textContent="";
+        }
         atk.textContent = `${kind==="attack"?"こうげき":"とくこう"}:${kind==="attack"?attack:sp_attack}`;
+        def.textContent = `${kind==="attack"?"ぼうぎょ":"とくぼう"}:${kind==="attack"?defence:sp_defence}`;
+        maxhp.textContent = `最大HP:${healthpoint}`
         damage=kind==="attack"?Math.floor(skill.ratio*0.01*attack+skill.per*(attacklevel-1)+skill.base):Math.floor(skill.ratio*0.01*sp_attack+skill.per*(attacklevel-1)+skill.base);
-        console.log(skill.rate[0]===0&&skill.decrease[0]===0&&skill.current[0]===0);
         if(skill.name === "しんそく+"||(lucario_extremespeedbuff&&document.getElementById("lucario_extremespeedbuff").checked)){
           damage=Math.floor(damage*1.075);
         }
         if(defencepokemon.name==="みがわり人形"){
           if(skill.rate[0]===0&&skill.decrease[0]===0&&skill.current[0]===0){
-            write(damage);
             result.textContent = damage;
-            console.log(result);
           }else{
             result.textContent =`${damage}ダメージ+割合`;
           }
         }else{
-        damage = 600/(defence+600)*damage;
+        damage =kind==="attack"?600/(defence+600)*damage:600/(sp_defence+600)*damage;
+        damage = Math.floor(damage);
+        console.log(damage);
+        damage+=healthpoint*skill.rate[0]/100<skill.rate[1]?Math.floor(healthpoint*skill.rate[0]/100):skill.rate[1];
+        damage+=skill.decrease[0]*(healthpoint-nowhp)/100<skill.decrease[1]?Math.floor(skill.decrease[0]*(healthpoint-nowhp)/100):skill.decrease[1];
+        damage+=Math.floor(skill.current[0]*nowhp/100<skill.current[1]?Math.floor(skill.current[0]*nowhp/100):skill.current[1]);
+        console.log(damage);
+        for(let i = 0;i<=2;i++){
+          let item = items[i];
+          let itemlv = items_level[i].value;
+          switch(item){
+            case "ちからのハチマキ":
+              if(skill.name==="通常攻撃"||skill.name==="強化攻撃"){
+                let valll = Math.floor([1,2,3,3][Math.floor(itemlv/10)]*(nowhp-damage)/100);//なんか合わない
+                let nummm = kind==="attack"?600/(defence+600)*valll:600/(sp_defence+600)*valll;
+                console.log(valll);
+                console.log(nummm);
+                if(nummm>360){
+                  damage+=nummm
+                }else{
+                damage=Math.floor(damage+nummm);
+                }
+              }
+            break;
+          }
+        }
+        console.log(damage);
         result.textContent = `${damage}ダメージ`;
         }
       };
       calculation();
+      let itemremove = (i)=>{
+        let removing = document.getElementsByName("itemli")[i];
+        if(removing.getElementsByTagName("label")[1]!==undefined){
+          removing.removeChild(removing.lastChild);
+          removing.removeChild(removing.lastChild);
+        }
+      }
+      inputattackpokemon.addEventListener("change",function(){
+        changeskills();
+        calculation();
+      });
       inputattackpokemon.addEventListener("change",calculation);
       inputattacklevel.addEventListener("change",calculation);
       inputskill.addEventListener("change",calculation);
       inputdefencepokemon.addEventListener("change",calculation);
       inputdefencelevel.addEventListener("change",calculation);
-      inputitems[0].addEventListener("change",calculation);
-      inputitems[1].addEventListener("change",calculation);
-      inputitems[2].addEventListener("change",calculation);
+      inputitems[0].addEventListener("change",()=>{
+        itemremove(0);
+        calculation();
+      });
+      inputitems[1].addEventListener("change",()=>{
+        itemremove(1);
+        calculation();
+      });
+      inputitems[2].addEventListener("change",()=>{
+        itemremove(2);
+        calculation();
+      });
+      inputitems_level[0].addEventListener("change",calculation);
+      inputitems_level[1].addEventListener("change",calculation);
+      inputitems_level[2].addEventListener("change",calculation);
+      inputnowhp.addEventListener("change",calculation);
+      btnnowhp.addEventListener("click",()=>{
+        inputnowhp.value = healthpoint;
+        calculation();
+      });
       document.addEventListener('touchstart', (event) => {
         if(event.touches && event.touches.length > 1) {
             event.preventDefault();
@@ -229,6 +398,8 @@
       }, {
           passive: false
       });
+      document.getElementById("powerband").addEventListener("change",calculation);
+      document.getElementById("dumbbell").addEventListener("change",calculation);
     </script>
   </body>
 </html>
